@@ -28,6 +28,6 @@ func NewService(logger *slog.Logger) *Service {
 	}
 }
 
-func (s *Service) Run(ctx context.Context) error {
+func (s *Service) Run(_ context.Context) error {
 	return nil
 }

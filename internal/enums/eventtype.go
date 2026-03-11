@@ -9,6 +9,7 @@ const (
 )
 
 func (e EventType) IsValid() bool {
+	//nolint:gocritic // switch will be populated later
 	switch e {
 	case EventTypeSample:
 		return true

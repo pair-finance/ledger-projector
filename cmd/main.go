@@ -37,8 +37,17 @@ func main() {
 
 	for {
 		select {
-		case <-ticker.C:
-			eventService.Run(ctx)
+		case t := <-ticker.C:
+			if err := eventService.Run(ctx); err != nil {
+				logger.ErrorContext(
+					ctx,
+					"failed running event service",
+					"time",
+					t.Local().Format(time.DateTime),
+					"error",
+					err.Error(),
+				)
+			}
 		case <-sigs:
 			logger.WarnContext(ctx, "Terminated by SIGINT/SIGTERM.")
 			return
